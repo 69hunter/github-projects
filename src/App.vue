@@ -1,9 +1,11 @@
 <template>
   <div id="app">
-    <b-navbar type="dark" variant="primary" sticky="true">
+    <b-navbar type="dark" variant="primary" :sticky="true">
       <b-navbar-brand>Github Projects</b-navbar-brand>
     </b-navbar>
-    <router-view></router-view>
+    <div class="container my-3">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
