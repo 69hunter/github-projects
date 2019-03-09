@@ -3,6 +3,7 @@
     <b-navbar type="dark" variant="primary" sticky="true">
       <b-navbar-brand>Github Projects</b-navbar-brand>
     </b-navbar>
+    <router-view></router-view>
   </div>
 </template>
 
