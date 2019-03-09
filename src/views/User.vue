@@ -1,14 +1,23 @@
 <template>
   <div>
     <b-breadcrumb :items="items"/>
-    <b-alert :show="showAlert" variant="danger" class="d-flex justify-content-between align-items-center">
-      <div>User not found</div>
-      <b-button variant="outline-danger" @click="$router.go(-1)">Back</b-button>
-    </b-alert>
-    <div v-if="!showAlert">
-      <h1 class="h2">{{this.$route.params.userid}}</h1>
-      <ProjectList v-bind:projects="projects" v-on:selectProject="routeToDetail"></ProjectList>
+    <div v-if="loading" class="text-center">
+      <b-spinner variant="primary"/>
     </div>
+    <template v-else>
+      <b-alert
+        :show="showAlert"
+        variant="danger"
+        class="d-flex justify-content-between align-items-center"
+      >
+        <div>User not found</div>
+        <b-button variant="outline-danger" @click="$router.go(-1)">Back</b-button>
+      </b-alert>
+      <div v-if="!showAlert">
+        <h1 class="h2">{{this.$route.params.userid}}</h1>
+        <ProjectList v-bind:projects="projects" v-on:selectProject="routeToDetail"></ProjectList>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -23,6 +32,7 @@ export default {
   },
   data: function() {
     return {
+      loading: true,
       items: [
         {
           text: "Home",
@@ -33,7 +43,7 @@ export default {
           active: true
         }
       ],
-      showAlert: true,
+      showAlert: false,
       projects: [],
       user: {}
     };
@@ -42,6 +52,9 @@ export default {
     this.getProjects(this.$route.params.userid);
   },
   beforeRouteUpdate(to, from, next) {
+    this.loading = true;
+    this.projects = [];
+    this.showAlert = false;
     this.getProjects(to.params.userid);
     next();
   },
@@ -49,12 +62,13 @@ export default {
     getProjects(username) {
       ApiGithub.getProjects(username)
         .then(response => {
-          this.showAlert = false;
           this.projects = response;
         })
         .catch(err => {
           this.showAlert = true;
-          this.projects = [];
+        })
+        .finally(() => {
+          this.loading = false;
         });
     },
     routeToDetail({ projectid }) {
