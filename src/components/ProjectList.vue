@@ -3,7 +3,7 @@
     <b-list-group-item
       v-for="project in projects"
       v-bind:key="project.id"
-      class="d-flex justify-content-between align-items-center"
+      class="d-flex justify-content-between align-items-center mb-2"
     >
       <div>
         <h2 class="h5">{{project.name}}</h2>
