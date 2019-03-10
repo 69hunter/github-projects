@@ -1,29 +1,25 @@
-# github-projects
+# Github Projects
 
-## Project setup
-```
-npm install
-```
+This application displays Github projects from author, and displays project's README in project details view.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Instructions
 
-### Compiles and minifies for production
-```
-npm run build
-```
+> Note: This guide assumes you have npm installed locally.
 
-### Run your tests
-```
-npm run test
-```
+1. Clone this repo with `git clone`.
+1. Install dependencies by running `npm install`.
+1. Run a development server with `npm run serve`.
+    - View the demos by accessing [http://localhost:8080/](http://localhost:8080/)
 
-### Lints and fixes files
-```
-npm run lint
-```
+## Technologies
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+This project is scaffolded using [vue cli](https://cli.vuejs.org/) and built with the following technologies:
+
+1. HTML
+1. CSS
+1. Vue.js
+1. Bootstrap
+
+## Build for production
+
+1. Compiles and minifies the project for production with `npm run build`.
